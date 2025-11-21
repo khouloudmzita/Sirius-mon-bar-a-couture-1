@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="SIRIUS • Mon Bar à Couture • Nice — créations, retouches et ateliers. Réservez un atelier ou privatisation.">
+  <title>SIRIUS • Mon Bar à Couture — Nice</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Social preview -->
+  <meta property="og:title" content="SIRIUS • Mon Bar à Couture — Nice">
+  <meta property="og:description" content="Création sur mesure, retouches et ateliers couture dans un espace chaleureux à Nice.">
+  <meta property="og:type" content="website">
+  <!-- If you host a hero image on your server, replace this URL -->
+  <meta property="og:image" content="https://recreanice.fr/sites/default/files/imce/faceapp_1647617099575_-_copie.jpg">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">SIRIUS <span class="sub">Mon Bar à Couture</span></a>
+
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="#services">Services</a>
+        <a href="#gallery">Galerie</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#reviews">Avis</a>
+        <a href="#contact">Contact</a>
+        <button class="btn-outline" id="openBookingBtn">Réserver</button>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu">☰</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home" aria-label="Hero">
+    <!-- Hero uses a layered approach (image + dark overlay for legibility) -->
+    <div class="hero-media" role="img" aria-label="Atelier couture à Nice"></div>
+
+    <div class="container hero-content">
+      <h1>SIRIUS — Mon Bar à Couture</h1>
+      <p class="lead">Création, retouches et ateliers dans un lieu chaleureux au cœur de Nice.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Découvrir nos services</a>
+        <a href="#contact" class="btn-ghost">Nous contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="container section">
+    <div class="grid-2">
+      <div>
+        <h2>Nos Services</h2>
+        <p class="muted">Bar à couture • Cours & ateliers • Retouches professionnelles • Privatisation d'espace</p>
+
+        <ul class="services-list">
+          <li><strong>Bar à couture</strong> — Accès libre aux machines professionnelles et au matériel.</li>
+          <li><strong>Cours de couture</strong> — Ateliers pour tous niveaux, apprentissage pratique et créatif.</li>
+          <li><strong>Retouches</strong> — Finitions raffinées, rapides et précises.</li>
+          <li><strong>Privatisation</strong> — Événements, anniversaires, shootings.</li>
+        </ul>
+
+        <a class="btn-outline" href="#tarifs">Voir tarifs & PDF</a>
+      </div>
+
+      <div class="card-hero">
+        <img src="https://recreanice.fr/sites/default/files/imce/faceapp_1647617099575_-_copie.jpg" alt="Bar à couture" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY (auto sliding) -->
+  <section id="gallery" class="section gallery-section">
+    <div class="container">
+      <h2>Galerie</h2>
+      <p class="muted">Un échantillon de nos ateliers et réalisations — mélange d'images client et de photos stylées.</p>
+
+      <div class="slider-wrap">
+        <div class="slider" id="imageSlider" aria-live="off">
+          <!-- User images (kept) -->
+          <div class="slide"><img src="https://recreanice.fr/sites/default/files/2022/imce/stage5.jpg" alt="Atelier couture" loading="lazy"></div>
+          <div class="slide"><img src="https://recreanice.fr/sites/default/files/2022/imce/anniv.jpg" alt="Anniversaire couture" loading="lazy"></div>
+          <div class="slide"><img src="https://recreanice.fr/sites/default/files/2022/imce/anniv1.jpg" alt="Couture event" loading="lazy"></div>
+
+          <!-- Facebook images (kept) -->
+          <div class="slide"><img src="https://scontent.ftun8-1.fna.fbcdn.net/v/t39.30808-6/489161777_1226051492304023_6267617241711606058_n.jpg" alt="Atelier 4" loading="lazy"></div>
+          <div class="slide"><img src="https://scontent.ftun20-1.fna.fbcdn.net/v/t39.30808-6/486691549_1214951086747397_6758493454288321724_n.jpg" alt="Atelier 5" loading="lazy"></div>
+
+          <!-- Royalty-free couture images (Unsplash) - replace if you upload your own -->
+          <div class="slide"><img src="https://images.unsplash.com/photo-1520975911053-4b1b52bdac47?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&s=8b48a2ae750b7a8d9d1c1406f7c8b6b1" alt="Couture inspiration" loading="lazy"></div>
+          <div class="slide"><img src="https://images.unsplash.com/photo-1520975950974-f1cf7d2f0b94?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&s=9c3c7c5c654a5b2d3fdc0c1f3f8a1a2d" alt="Atelier couture" loading="lazy"></div>
+        </div>
+
+        <!-- slider controls -->
+        <button class="slider-control prev" aria-label="Précédent" id="prevBtn">‹</button>
+        <button class="slider-control next" aria-label="Suivant" id="nextBtn">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARIFS -->
+  <section id="tarifs" class="container section">
+    <h2>Tarifs</h2>
+
+    <div class="tarif">
+      <div class="tarif-row">
+        <div>Initiation à la couture — 2H</div>
+        <div class="price">25 €</div>
+      </div>
+
+      <div class="tarif-row">
+        <div>Retouche</div>
+        <div class="price">à partir de 8 €</div>
+      </div>
+
+      <div class="tarif-row">
+        <div>Privatisation de lespace</div>
+        <div class="price">à partir de 200 €</div>
+      </div>
+
+      <p class="muted small">Télécharger le PDF complet :</p>
+      <a class="btn-primary" href="TARIFS.pdf" target="_blank" rel="noopener">PDF complet</a>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="section reviews">
+    <div class="container">
+      <h2>Ils parlent de nous</h2>
+
+      <div class="reviews-wrap">
+        <div class="reviews-slider" id="reviewsSlider">
+          <blockquote class="review">
+            <p>« Travail précis et finitions raffinées. Je recommande. »</p>
+            <cite>— Amira</cite>
+          </blockquote>
+
+          <blockquote class="review">
+            <p>« Ateliers inspirants et professeurs bienveillants. »</p>
+            <cite>— Leila</cite>
+          </blockquote>
+
+          <blockquote class="review">
+            <p>« Super accueil, belle adresse à Nice. »</p>
+            <cite>— Sara</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EFSIGHT GOOGLE REVIEWS (kept as in your original content) -->
+  <div class="container">
+    <div class="elfsight">
+      <script src="https://elfsightcdn.com/platform.js" async></script>
+      <div class="elfsight-app-0488f4f4-513c-4d66-8bfc-91f0a67cffcb" data-elfsight-app-lazy></div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container section contact">
+    <h2>Contact</h2>
+    <p>📍 15 rue Georges Ville, 06300 Nice, France</p>
+    <p>📞 <a href="tel:+33625603387">+33 6 25 60 33 87</a></p>
+    <p>📧 <a href="mailto:sirius-mon-bar-a-couture@hotmail.com">sirius-mon-bar-a-couture@hotmail.com</a></p>
+    <p class="muted small">Horaires et demandes de privatisation : contactez-nous directement.</p>
+  </section>
+
+  <!-- BOOKING MODAL -->
+  <div id="bookingModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-panel">
+      <button class="modal-close" id="closeBookingBtn" aria-label="Fermer">✕</button>
+      <h3 id="modalTitle">Réserver / Demande</h3>
+
+      <form id="bookingForm" class="booking-form" action="#" method="post" novalidate>
+        <label>
+          Nom complet
+          <input name="name" type="text" required>
+        </label>
+
+        <label>
+          Téléphone
+          <input name="phone" type="tel" required>
+        </label>
+
+        <label>
+          Service demandé
+          <select name="service">
+            <option>Initiation 2H</option>
+            <option>Retouche</option>
+            <option>Privatisation</option>
+            <option>Autre</option>
+          </select>
+        </label>
+
+        <label>
+          Message
+          <textarea name="message" rows="4" placeholder="Détails (taille, date souhaitée...)"></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Envoyer la demande</button>
+          <button type="button" class="btn-ghost" id="cancelBooking">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- WHATSAPP FLOAT BUTTON -->
+  <a class="whatsapp-float" href="https://wa.me/33625603387" target="_blank" aria-label="Contact WhatsApp">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path fill="#fff" d="M20.5 3.5L3.5 20.5V24l3.5-1.1C8.8 23.7 12 24 15.5 20.5 19 17 19.3 13.8 20.5 12.6 22.3 10.8 22.5 4.5 20.5 3.5z"/>
+    </svg>
+  </a>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>© 2026 SIRIUS • Mon Bar à Couture — Nice</div>
+        <div class="muted small">Tous droits réservés</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JS -->
+  <script src="script.js"></script>
+</body>
+</html>
