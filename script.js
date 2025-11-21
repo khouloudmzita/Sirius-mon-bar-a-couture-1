@@ -1,109 +1,82 @@
-script.js
-/* --------------------------
-   Basic interactive behavior
-   -------------------------- */
+// ====== IMAGE SLIDER ======
+const slides = document.querySelectorAll("#imageSlider .slide");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
+let currentSlide = 0;
+const totalSlides = slides.length;
 
-/* Mobile menu toggle (simple) */
-const hamburger = document.getElementById('hamburger');
-const nav = document.querySelector('.main-nav');
-hamburger && hamburger.addEventListener('click', () => {
-  if(nav.style.display === 'flex'){ nav.style.display = ''; }
-  else { nav.style.display = 'flex'; nav.style.flexDirection = 'column'; nav.style.gap = '14px'; nav.style.alignItems = 'flex-start'; }
+// Hide all slides except the first
+slides.forEach((slide, index) => {
+  slide.style.display = index === 0 ? "block" : "none";
 });
 
-/* --------------------------
-   Image slider (infinite loop)
-   -------------------------- */
-const slider = document.getElementById('imageSlider');
-const slides = slider ? Array.from(slider.children) : [];
-let current = 0;
-let slideCount = slides.length || 1;
-let slideWidth = slider ? slider.getBoundingClientRect().width : 0;
-let autoSlideTimer = null;
-
-function goTo(index) {
-  current = (index + slideCount) % slideCount;
-  slider.style.transform = `translateX(-${current * 100}%)`;
+// Show slide function
+function showSlide(index) {
+  slides.forEach((slide) => (slide.style.display = "none"));
+  slides[index].style.display = "block";
 }
 
-/* next / prev buttons */
-document.getElementById('nextBtn').addEventListener('click', () => { resetAutoSlide(); goTo(current + 1); });
-document.getElementById('prevBtn').addEventListener('click', () => { resetAutoSlide(); goTo(current - 1); });
+// Next & Prev controls
+nextBtn.addEventListener("click", () => {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  showSlide(currentSlide);
+});
 
-/* auto slide */
-function startAutoSlide() {
-  stopAutoSlide();
-  autoSlideTimer = setInterval(() => { goTo(current + 1); }, 4200);
+prevBtn.addEventListener("click", () => {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  showSlide(currentSlide);
+});
+
+// Auto-play every 5 seconds
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  showSlide(currentSlide);
+}, 5000);
+
+// ====== REVIEWS SLIDER ======
+const reviewSlider = document.getElementById("reviewsSlider");
+const reviews = document.querySelectorAll("#reviewsSlider .review");
+let currentReview = 0;
+const totalReviews = reviews.length;
+
+// Hide all reviews except the first
+reviews.forEach((r, i) => (r.style.display = i === 0 ? "block" : "none"));
+
+function showReview(index) {
+  reviews.forEach((r) => (r.style.display = "none"));
+  reviews[index].style.display = "block";
 }
-function stopAutoSlide(){ if(autoSlideTimer) clearInterval(autoSlideTimer); }
-function resetAutoSlide(){ stopAutoSlide(); startAutoSlide(); }
 
-startAutoSlide();
+// Auto-play reviews every 6 seconds
+setInterval(() => {
+  currentReview = (currentReview + 1) % totalReviews;
+  showReview(currentReview);
+}, 6000);
 
-/* pause on hover */
-slider.addEventListener('mouseenter', stopAutoSlide);
-slider.addEventListener('mouseleave', startAutoSlide);
+// ====== HAMBURGER MENU ======
+const hamburger = document.getElementById("hamburger");
+const nav = document.querySelector(".main-nav");
 
-/* adjust on resize */
-window.addEventListener('resize', () => {
-  slideWidth = slider.getBoundingClientRect().width;
-  goTo(current);
+hamburger.addEventListener("click", () => {
+  nav.classList.toggle("open");
 });
 
-/* --------------------------
-   Reviews auto-scroll (vertical carousel)
-   -------------------------- */
-const reviewsSlider = document.getElementById('reviewsSlider');
-const reviewCount = reviewsSlider ? reviewsSlider.children.length : 0;
-let reviewIndex = 0;
+// ====== BOOKING MODAL ======
+const openBookingBtn = document.getElementById("openBookingBtn");
+const bookingModal = document.getElementById("bookingModal");
+const closeBookingBtn = document.getElementById("closeBookingBtn");
+const cancelBookingBtn = document.getElementById("cancelBooking");
 
-function nextReview(){
-  if(!reviewsSlider) return;
-  reviewIndex = (reviewIndex + 1) % reviewCount;
-  const offset = reviewIndex * (reviewsSlider.children[0].getBoundingClientRect().height + 12);
-  reviewsSlider.style.transform = `translateY(-${offset}px)`;
+function openModal() {
+  bookingModal.setAttribute("aria-hidden", "false");
+  bookingModal.style.display = "flex";
 }
-let reviewsTimer = setInterval(nextReview, 5200);
 
-/* Pause reviews on hover */
-reviewsSlider && reviewsSlider.addEventListener('mouseenter', () => clearInterval(reviewsTimer));
-reviewsSlider && reviewsSlider.addEventListener('mouseleave', () => reviewsTimer = setInterval(nextReview, 5200));
+function closeModal() {
+  bookingModal.setAttribute("aria-hidden", "true");
+  bookingModal.style.display = "none";
+}
 
-/* --------------------------
-   Booking modal
-   -------------------------- */
-const bookingModal = document.getElementById('bookingModal');
-const openBookingBtn = document.getElementById('openBookingBtn');
-const closeBookingBtn = document.getElementById('closeBookingBtn');
-const cancelBookingBtn = document.getElementById('cancelBooking');
-
-function openBooking(){ bookingModal.setAttribute('aria-hidden','false'); }
-function closeBooking(){ bookingModal.setAttribute('aria-hidden','true'); }
-
-openBookingBtn && openBookingBtn.addEventListener('click', openBooking);
-closeBookingBtn && closeBookingBtn.addEventListener('click', closeBooking);
-cancelBookingBtn && cancelBookingBtn.addEventListener('click', closeBooking);
-
-/* close modal on outside click */
-bookingModal && bookingModal.addEventListener('click', (e) => {
-  if(e.target === bookingModal) closeBooking();
-});
-
-/* Booking form submit (placeholder) */
-const bookingForm = document.getElementById('bookingForm');
-bookingForm && bookingForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  // Replace with real form handling (AJAX or integration with email service)
-  alert('Merci ! votre demande a été envoyée. Nous vous recontacterons rapidement.');
-  bookingForm.reset();
-  closeBooking();
-});
-
-/* Accessibility: Allow ESC to close modal */
-document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeBooking(); });
-
-/* --------------------------
-   Lightweight performance tips
-   -------------------------- */
-/* If you plan to upload your images to /public, update the image URLs in HTML to relative paths
-   e.g. /images/gallery1.jpg to avoid hotlinking issues and improve loading speed. */
+openBookingBtn.addEventListener("click", openModal);
+closeBookingBtn.addEventListener("click", closeModal);
+canc
